@@ -30,7 +30,13 @@ installed `.app` or register a login item.
 ## Architecture
 
 Single executable target `ClaudeUsageOSD` (Swift 5.9, macOS 13+), entry point
-`Sources/ClaudeUsageOSD/ClaudeUsageOSDApp.swift`.
+`Sources/ClaudeUsageOSD/App/ClaudeUsageOSDApp.swift`. Source files are grouped into
+subfolders (SPM recurses into them automatically — no `Package.swift` changes needed):
+
+- `App/` — app entry point (`ClaudeUsageOSDApp.swift`).
+- `Views/` — `OSDPanelView`, `RingGaugeView`, `SegmentedControlView`, `StatTileView`,
+  `VisualEffectBlur`.
+- `Data/` — `UsageViewModel`, `UsageDataSource`.
 
 - **`UsageViewModel`** (`ObservableObject`) — single source of truth. Holds `tab`
   (`.today`/`.week`), drives a 1s clock `Timer` (`now`) for live countdowns, and a 3s poll
